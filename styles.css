@@ -1,0 +1,159 @@
+:root {
+    --background-color-main: rgb(42, 76, 168);
+    --background-color-second: rgb(64, 90, 163);
+    --border-color: 4px solid rgb(94, 164, 255);
+    --font-color: aliceblue;
+    --border-radius: 10px;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+}
+
+#mainContainer {
+    display: flex;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+p,
+h1 {
+    margin: 0;
+}
+
+#contentContainer {
+    width: 60%;
+    margin: 0;
+    min-width: 600px;
+}
+
+#header {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border: var(--border-color);
+    color: var(--font-color);
+    background-color: var(--background-color-main);
+    height: 20%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    font-size: 3rem;
+    font-weight: 700;
+    border-bottom: var(--border-color);
+
+}
+
+#inputContainer {
+    width: 400px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#inputContainer>input {
+    border-radius: 5px 0 0 5px;
+    height: 60px;
+    width: 75%;
+    padding: 0;
+    margin: 0;
+    font-size: 1.3rem;
+    text-align: center;
+    box-sizing: border-box;
+    border: none;
+}
+
+#inputContainer>button {
+    border-radius: 0 5px 5px 0;
+    height: 60px;
+    margin: 0;
+    width: 60px;
+    font-size: 1.5rem;
+    background-color: rgb(56, 192, 169);
+    border: none;
+}
+
+#center {
+    margin: 0;
+    height: 80%;
+    display: flex;
+}
+
+#centerLeft {
+    border-left: var(--border-color);
+    background-color: var(--background-color-second);
+    color: var(--font-color);
+    width: 30%;
+    font-size: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    border-right: var(--border-color);
+}
+
+#centerMid {
+    border-right: var(--border-color);
+    background-color: var(--background-color-second);
+    color: var(--font-color);
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    width: 75%;
+    font-size: 1rem;
+    text-align: center;
+
+}
+
+#weatherDisplay {
+    font-size: 2rem;
+    border-bottom: var(--border-color);
+    padding-bottom: 0px;
+    margin: 0;
+    padding-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+
+
+#cardContainer {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+}
+
+.centerMidCard>h3 {
+    color: rgb(189, 189, 189);
+    font-weight: 400;
+}
+
+#nextDaysDisplay {
+    border-top: var(--border-color);
+    background-color: var(--background-color-main);
+    color: var(--font-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    border-left: var(--border-color);
+    border-right: var(--border-color);
+    border-bottom: var(--border-color);
+}
+
+.nexDayCard:last-of-type {
+    border: none;
+}
+
+.nexDayCard {
+    padding: 20px;
+    width: 15%;
+    text-align: center;
+    border-right: var(--border-color);
+
+}

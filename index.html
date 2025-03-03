@@ -2,15 +2,88 @@
 <html lang="pl">
 
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prognoza Pogody</title>
 </head>
 
 <body>
+    <div id="mainContainer">
+        <div id="contentContainer">
 
+            <div id="header">
+                <p id="cityNameDisplay">Kielce</p>
+                <div id="inputContainer">
+                    <input id="userInput" type="text" placeholder="Wpisz nazwę miejscowości">
+                    <button id="searchBtn">🔍</button>
+                </div>
+            </div>
+            <div id="center">
+                <div id="centerLeft">
+                    <h1 id="emojiDisplay">🌤</h1>
+                    <h1 id="tempDisplay">23°C</h1>
+                </div>
+                <div id="centerMid">
+                    <h3 id="weatherDisplay">Deszczowo</h3>
+                    <div id="cardContainer">
+                        <div class="centerMidCard">
+                            <h3 id="cardTempText">🌡 Odczuwalna</h3>
+                            <h2 id="cardTemp">2°C</h2>
+                        </div>
+                        <div class="centerMidCard">
+                            <h3 id="cardPressureText">⏲ Cisnienie</h3>
+                            <h2 id="cardPressure">1026 hPa</h2>
+                        </div>
+                        <div class="centerMidCard">
+                            <h3 id="cardWindText">🏳 Wiatr</h3>
+                            <h2 id="cardWind">18 km/h</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="nextDaysDisplay">
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+                <div class="nexDayCard">
+                    <h1>Pon</h1>
+                    <h2>🌤</h2>
+                    <h2>23°C</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </body>
 
 </html>
