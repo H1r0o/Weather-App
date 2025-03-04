@@ -9,10 +9,25 @@ const cardPressure = document.querySelector("#cardPressure");//Seletor do wyświ
 const cardWind = document.querySelector("#cardWind");//Selektor do wyświetlania prędkości wiatru
 const nextDaysDisplay = document.querySelector("#nextDaysDisplay");//Selektor do wyświetlania następnych dni
 
-searchBtn.addEventListener("click", async () => {
-    let imput = userInput.value;
-    const fetchedData = await fetchingData(imput);
-    displayInfo(fetchedData);
+const icons = {
+    "clear-day": "☀️",
+    "clear-night": "🌙",
+    "partly-cloudy-day": "⛅",
+    "partly-cloudy-night": "🌙☁️",
+    cloudy: "☁️",
+    fog: "🌫️",
+    wind: "💨",
+    rain: "🌧️",
+    "showers-day": "🌦️",
+    "showers-night": "🌧️",
+    snow: "❄️",
+    thunderstorm: "⛈️",
+    hail: "🌨️"
+};
+
+main();
+searchBtn.addEventListener("click", () => {
+    main();
 }
 )
 
@@ -27,22 +42,68 @@ async function fetchingData(city) {
     return await response.json();
 } //Funkcja pobiera dane z API i zwraca w postaci json
 
-function main() {
-
-    let dataApi = fetchingData(imput);
-    console.log(dataApi);
-    // displayInfo(dataApi);
+async function main() {
+    let imput = userInput.value;
+    if (imput === "") {
+        imput = "Tokyo";
+    }
+    const fetchedData = await fetchingData(imput);
+    displayInfo(fetchedData);
+    console.log(fetchedData);
+    displaingNextDays(fetchedData);
 }
 
 function displayInfo(data) {
-    const { address, currentConditions: { temp } } = data;
-    cityName.innerHTML = address;
+    const { address, currentConditions: { temp, feelslike, pressure,
+        windspeed, icon }, description } = data;
     const celciusTemp = convertingToCelcius(temp);
+    const feelslikeCelcius = convertingToCelcius(feelslike);
+    emojiDisplay.innerHTML = icons[icon]
+    cityName.innerHTML = address;
     tempDisplay.innerHTML = `${celciusTemp.toFixed(1)}°C`;
-    // tempDisplay.innerHTML = data.currentConditions.temp;
+    cardTemp.innerHTML = `${feelslikeCelcius.toFixed(1)}°C`;
+    cardPressure.innerHTML = `${pressure} hPa`;
+    cardWind.innerHTML = `${windspeed} km/h`;
+    weatherDisplay.innerHTML = description;
+};
+
+function displaingNextDays(data) {
+    const { days } = data;
+    nextDaysDisplay.innerHTML = "";
+    for (let i = 1; i < 7; i++) {
+        let currentDay = days[i];
+        const cardContainer = document.createElement("div");
+        cardContainer.classList.add("nexDayCard");
+        const currentDayDisplay = document.createElement("h1");
+        const minTemp = document.createElement("h4");
+        const maxTemp = document.createElement("h4");
+        const currentTemp = document.createElement("h2");
+
+        currentDayDisplay.innerHTML = dayName(currentDay.datetime);
+        minTemp.innerHTML = `Min: ${convertingToCelcius(currentDay.tempmin).toFixed(1)}°C`;
+        maxTemp.innerHTML = `Max: ${convertingToCelcius(currentDay.tempmax).toFixed(1)}°C`;
+        currentTemp.innerHTML = `${convertingToCelcius(currentDay.temp).toFixed(1)}°C`;
+        cardContainer.appendChild(currentDayDisplay);
+        cardContainer.appendChild(currentTemp);
+        cardContainer.appendChild(minTemp);
+        cardContainer.appendChild(maxTemp);
+        nextDaysDisplay.appendChild(cardContainer);
+
+    }
 }
 
 function convertingToCelcius(temp) {
     let celcius = (temp - 32) * 5 / 9;
     return celcius;
 }
+
+
+function dayName(data) {
+    const dateString = data;
+    const date = new Date(dateString);
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sa"];
+
+    const dayOfWeek = daysOfWeek[date.getDay()];
+    return dayOfWeek;
+}
+
